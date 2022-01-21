@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnluCoWeekTwoHW.Entities.Concrete;
 
 namespace UnluCoWeekTwoHW.Extensions
 {
     public static class ProbabilisticSearcingExtensions
     {
-        public static bool addNewUser (this IEnumerable<string> _bloomFilter, string name)
+        public static bool addHashingifNotExist<T>(this ICollection<T> itemCollection, T item)
         {
-            AddItemHashing(name);
+            
+            AddItemHashing(item.ToString());
             return true;
         }
         private static byte[] _bloomFilter = new byte[1000];

@@ -18,35 +18,55 @@ namespace UnluCoWeekTwoHW.Controllers
         public ScientistsController(IScientistRepository scientistRepository)
         {
             _scientistRepository = scientistRepository;
-        }
-      
+        }     
         [HttpGet("getAllScientists")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public  ActionResult<IEnumerable<Scientist>> GetAll()
         {
             var scientistList = _scientistRepository.GetAll();
-
+            if (scientistList == null || scientistList.Any())
+            {
+                return StatusCode(204);
+            }
             return  Ok(scientistList);
         }
         [HttpGet("getScientist/{id}")]
+        [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetById(object id)
         {
             var scientistList = _scientistRepository.GetById(id);
+            if (scientistList==null || scientistList.Any())
+            {
+                return StatusCode(204);
+            }           
             return Ok(scientistList);
         }
-        [HttpGet("getScientist/{name}")]
+        [HttpGet("getScientists/{name}")]
+        [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult GetByName(string name)
         {
             var scientistList = _scientistRepository.GetByName(name);
+            if (scientistList == null || scientistList.Any())
+            {
+                return StatusCode(204);
+            }
+            
             return Ok(scientistList);
         }
         [HttpPost("Create")]
+        [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult Created(Scientist scientist)
         {
             _scientistRepository.Create(scientist);
             return Ok(_scientistRepository);
         }
         [HttpDelete("Delete/{id}")]
+        [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult DeleteById(int id)
         {
             _scientistRepository.Delete(id);
@@ -54,6 +74,8 @@ namespace UnluCoWeekTwoHW.Controllers
             return Ok();
         }
         [HttpPatch("UpdateStatus")]
+        [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult ChangeStatus(int id)
         {
             _scientistRepository.ChangeStatus(id);

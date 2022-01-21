@@ -33,6 +33,7 @@ namespace UnluCoWeekTwoHW
 
             services.AddControllers().AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddSingleton<IScientistRepository , ScientistRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
        
             services.AddSwaggerGen(c =>
             {

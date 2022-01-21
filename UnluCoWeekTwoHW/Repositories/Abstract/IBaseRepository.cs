@@ -11,9 +11,9 @@ namespace UnluCoWeekTwoHW.Repositories.Abstract
         IEnumerable<T> GetAll();
         // Kullanıcının parametre olarak verdiği alanları listeliyorum.
         IEnumerable<T> GetAllSpec(params string[] colums);
-        T GetById(object id);
+        ICollection<T> GetById(object id);
         IEnumerable<T> GetByName(string name);
-        string Create(T obj);
+        bool Create(T obj);
         bool Update(T obj);
         bool Delete(object id);
         bool ChangeStatus(object id);

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnluCoWeekTwoHW.Entities.Concrete;
+using UnluCoWeekTwoHW.Extensions;
 using UnluCoWeekTwoHW.Repositories.Abstract;
 
 namespace UnluCoWeekTwoHW.Repositories.Concrete
 {
-    public class UserRepository : IBaseRepository<User>
+    public class UserRepository : IUserRepository
     {
         public HashSet<User> userDb = new HashSet<User>()
         {
@@ -39,27 +40,35 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
 
             }
         };
-        
+        public ICollection<User> GetById(object id)
+        {
+            var user = userDb.Where(a => a.Id == (int)id).ToList<User>();
+            return user;
+        }
         public bool ChangeStatus(object id)
         {
-            
+           
             throw new NotImplementedException();
         }
-
-        public string Create(User obj)
+        public bool Create(User obj)
         {
-            userDb.Add(obj);
-            return "Baş";
+            if (userDb.addHashingifNotExist(obj))
+            {
+                return true;
+            }
+            return false;
         }
-
         public bool Delete(object id)
         {
-            throw new NotImplementedException();
-        }
+            var user = userDb.Where(a => a.Id == (int)id).FirstOrDefault();
+            userDb.Remove(user);
+            return true;
 
+        }
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            var users = userDb.Where(a => true).ToList();
+            return users;
         }
 
         public IEnumerable<User> GetAllSpec(params string[] colums)
@@ -67,10 +76,7 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
             throw new NotImplementedException();
         }
 
-        public User GetById(object id)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public IEnumerable<User> GetByName(string name)
         {

@@ -49,9 +49,9 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
                 isActive=true
             }
         };
-        public Scientist GetById(object id)
+        public ICollection<Scientist> GetById(object id)
         {
-            var scientist = scientistsDb.Where(a => a.ScientistId == (int)id).FirstOrDefault();
+            var scientist = scientistsDb.Where(a => a.ScientistId == (int)id).ToList();
             return scientist;
         }
         public IEnumerable<Scientist> GetByName(string name)
@@ -67,13 +67,13 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
         {
             throw new NotImplementedException();
         }
-        public string Create(Scientist obj)
+        public bool Create(Scientist obj)
         {
             if (scientistsDb.AddIfNotExists(obj)) //yazdığımız extension method u kullandık
             {
-                return $"{obj.ScientistName} isimli bilim insanı sisteme başarı ile eklenmiştir."; 
+                return true; 
             }
-            return Messages.ExistingData(obj.ScientistName);
+            return false;
         }
         public bool Delete(object id)
         {

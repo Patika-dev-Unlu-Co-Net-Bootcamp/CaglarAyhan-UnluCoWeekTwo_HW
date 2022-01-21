@@ -11,8 +11,8 @@ namespace UnluCoWeekTwoHW.Validators
     {
         public UserValidator()
         {
-            RuleFor(x => x.UserName).NotNull().NotEmpty().WithMessage("");
-            RuleFor(x => x.Password).NotEmpty().NotNull().WithMessage("");
+            RuleFor(x => x.UserName).NotNull().NotEmpty().WithMessage("ASD");
+            RuleFor(x => x.Password).NotEmpty().NotNull().WithMessage("WQE");
         }
     }
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnluCoWeekTwoHW.Entities.Concrete;
 
 namespace UnluCoWeekTwoHW.Repositories.Abstract
 {
-    public class IUserRepository
+    public interface IUserRepository : IBaseRepository<User>
     {
+     
     }
 }
