@@ -25,11 +25,12 @@ namespace UnluCoWeekTwoHW.Controllers
         public  ActionResult<IEnumerable<Scientist>> GetAll()
         {
             var scientistList = _scientistRepository.GetAll();
-            if (scientistList == null || scientistList.Any())
+            if (scientistList != null && scientistList.Any())
             {
-                return StatusCode(204);
+                return Ok(scientistList);
             }
-            return  Ok(scientistList);
+            return StatusCode(204);
+            
         }
         [HttpGet("getScientist/{id}")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
@@ -37,11 +38,11 @@ namespace UnluCoWeekTwoHW.Controllers
         public IActionResult GetById(object id)
         {
             var scientistList = _scientistRepository.GetById(id);
-            if (scientistList==null || scientistList.Any())
+            if (scientistList != null && scientistList.Any())
             {
-                return StatusCode(204);
-            }           
-            return Ok(scientistList);
+                return Ok(scientistList);
+            }
+            return StatusCode(204);
         }
         [HttpGet("getScientists/{name}")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
@@ -49,12 +50,11 @@ namespace UnluCoWeekTwoHW.Controllers
         public IActionResult GetByName(string name)
         {
             var scientistList = _scientistRepository.GetByName(name);
-            if (scientistList == null || scientistList.Any())
+            if (scientistList != null && scientistList.Any())
             {
-                return StatusCode(204);
+                return Ok(scientistList);
             }
-            
-            return Ok(scientistList);
+            return StatusCode(204);
         }
         [HttpPost("Create")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
