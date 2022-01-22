@@ -45,6 +45,14 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
             var user = userDb.Where(a => a.Id == (int)id).ToList<User>();
             return user;
         }
+        public bool Login(User _user){
+        var user = userDb.Where(a=>a.UserName==_user.UserName && b=>b.Password == _user.Password)
+        
+        if(user !=null && user.Any())
+        return true;
+        }
+        return false
+        
         public bool ChangeStatus(object id)
         {
            
