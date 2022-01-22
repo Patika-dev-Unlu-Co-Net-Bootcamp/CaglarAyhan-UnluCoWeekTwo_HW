@@ -24,7 +24,8 @@ namespace UnluCoWeekTwoHW.Controllers
         [HttpPost("NewUser")]
         public IActionResult AddUser([FromBody]User user)
         {
-            if (_userRepository.Create(user))
+        var users = _userRepository.Create(user)
+            if (users !=null && user.any())
             {
                 return Ok();
             }
