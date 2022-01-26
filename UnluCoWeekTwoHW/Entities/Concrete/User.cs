@@ -12,6 +12,7 @@ namespace UnluCoWeekTwoHW.Entities.Concrete
         public string SecondName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public bool isActive { get; set; }
 
         public void Deconstruct (out string _userName, out string _password)
         {

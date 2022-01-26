@@ -48,24 +48,33 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
         public bool Login(User _user){
             var user = userDb.Where(a => a.UserName == _user.UserName && a.Password == _user.Password);
         
-        if(user !=null && user.Any())
+            if(user !=null && user.Any())
             {
                 return true;
             }
             return false;
-        }
-       
-      
-        
+        }    
         public bool ChangeStatus(object id)
         {
-           
-            throw new NotImplementedException();
+            var user = userDb.Where(a => a.Id == (int)id).FirstOrDefault();
+            bool Status = true;
+            if (user!=null)
+            {
+                user.isActive = Status switch
+                {
+                    true => false,
+                    false => true
+                };
+                return true;
+            }
+
+            return false;
         }
         public bool Create(User obj)
         {
             if (userDb.addHashingifNotExist(obj))
             {
+                userDb.Add(obj);
                 return true;
             }
             return false;
@@ -75,29 +84,24 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
             var user = userDb.Where(a => a.Id == (int)id).FirstOrDefault();
             userDb.Remove(user);
             return true;
-
         }
         public IEnumerable<User> GetAll()
         {
             var users = userDb.Where(a => true).ToList();
             return users;
         }
-
-        public IEnumerable<User> GetAllSpec(params string[] colums)
-        {
-            throw new NotImplementedException();
-        }
-
-       
-
-        public IEnumerable<User> GetByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Update(User obj)
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<User> GetAllSpec(params string[] colums)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<User> GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+     
     }
 }
