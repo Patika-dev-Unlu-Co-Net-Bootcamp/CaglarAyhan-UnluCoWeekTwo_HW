@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnluCoWeekTwoHW.Entities.Concrete;
+using UnluCoWeekTwoHW.Extensions;
 using UnluCoWeekTwoHW.Repositories.Abstract;
 using UnluCoWeekTwoHW.Repositories.Concrete;
 
@@ -52,7 +53,7 @@ namespace UnluCoWeekTwoHW
             }
 
             app.UseHttpsRedirection();
-
+            app.UseLogging();
             app.UseRouting();
 
             app.UseAuthorization();

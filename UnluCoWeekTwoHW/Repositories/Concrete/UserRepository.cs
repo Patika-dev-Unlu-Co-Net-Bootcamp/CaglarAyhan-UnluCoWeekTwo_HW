@@ -67,7 +67,6 @@ namespace UnluCoWeekTwoHW.Repositories.Concrete
                 };
                 return true;
             }
-
             return false;
         }
         public bool Create(User obj)
