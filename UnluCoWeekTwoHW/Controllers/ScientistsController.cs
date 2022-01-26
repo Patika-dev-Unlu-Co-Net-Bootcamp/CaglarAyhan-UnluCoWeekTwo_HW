@@ -21,7 +21,7 @@ namespace UnluCoWeekTwoHW.Controllers
         }     
         [HttpGet("getAllScientists")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public  ActionResult<IEnumerable<Scientist>> GetAll()
         {
             var scientistList = _scientistRepository.GetAll();
@@ -34,7 +34,7 @@ namespace UnluCoWeekTwoHW.Controllers
         }
         [HttpGet("getScientist/{id}")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public IActionResult GetById(object id)
         {
             var scientistList = _scientistRepository.GetById(id);
@@ -46,7 +46,7 @@ namespace UnluCoWeekTwoHW.Controllers
         }
         [HttpGet("getScientists/{name}")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public IActionResult GetByName(string name)
         {
             var scientistList = _scientistRepository.GetByName(name);
@@ -58,7 +58,7 @@ namespace UnluCoWeekTwoHW.Controllers
         }
         [HttpPost("Create")]
         [ProducesResponseType(typeof(Scientist), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public IActionResult Created(Scientist scientist)
         {
             _scientistRepository.Create(scientist);
