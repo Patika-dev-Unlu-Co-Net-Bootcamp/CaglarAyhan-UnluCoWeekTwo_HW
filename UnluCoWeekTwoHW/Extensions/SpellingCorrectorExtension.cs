@@ -88,7 +88,7 @@ namespace UnluCoWeekTwoHW.Extensions
 				var replaces = new List<string>();
 				var inserts = new List<string>();
 
-				// Splits
+				// Splits aşaması gelen kelimeyi varyansyonlarına ayırıyoruz.
 				for (int i = 0; i < word.Length; i++)
 				{
 					var tuple = new Tuple<string, string>(word.Substring(0, i), word.Substring(i));
@@ -106,7 +106,8 @@ namespace UnluCoWeekTwoHW.Extensions
 					}
 				}
 
-				// Transposes
+				// Transposes ile girilen kelimedeki harflerin yerlerini değiştiriyorum
+
 				for (int i = 0; i < splits.Count; i++)
 				{
 					string a = splits[i].Item1;
@@ -117,7 +118,7 @@ namespace UnluCoWeekTwoHW.Extensions
 					}
 				}
 
-				// Replaces
+				// Replaces ile alfabedeki harfler ile yer değişmi yaparak alternatifleri belirliyorum.
 				for (int i = 0; i < splits.Count; i++)
 				{
 					string a = splits[i].Item1;
@@ -131,7 +132,7 @@ namespace UnluCoWeekTwoHW.Extensions
 					}
 				}
 
-				// Inserts
+				// Inserts işlemi ile gelen kelimenin arasına alfabedeki olabilecek harfleri ekliyoruz.
 				for (int i = 0; i < splits.Count; i++)
 				{
 					string a = splits[i].Item1;
