@@ -13,10 +13,15 @@ namespace UnluCoWeekTwoHW.Extensions
 		{
 			private readonly Dictionary<String, int> _dictionary = new Dictionary<String, int>();
 			private static readonly Regex _wordRegex = new Regex("[a-z]+", RegexOptions.Compiled);
-
+			//BloomFilter bloom = new BloomFilter();
 			public Spelling(string dictionary)
 			{
 				List<string> wordList = dictionary.Split('\n', ' ').ToList();
+				//foreach (var item in wordList)
+				//{
+				//    string trimmedWord = item.Trim().ToLower();
+				//    bloom.AddItemHash(trimmedWord, _filter);
+				//}
 				foreach (var word in wordList)
 				{
 					string trimmedWord = word.Trim().ToLower();
