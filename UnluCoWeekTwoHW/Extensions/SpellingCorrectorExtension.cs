@@ -11,7 +11,8 @@ namespace UnluCoWeekTwoHW.Extensions
     {
 		public class Spelling
 		{
-			private readonly Dictionary<String, int> _dictionary = new Dictionary<String, int>();
+			private HashSet<string> _hashSet = new HashSet<string>();
+			
 			private static readonly Regex _wordRegex = new Regex("[a-z]+", RegexOptions.Compiled);
 			//BloomFilter bloom = new BloomFilter();
 			public Spelling(string dictionary)
@@ -27,10 +28,8 @@ namespace UnluCoWeekTwoHW.Extensions
 					string trimmedWord = word.Trim().ToLower();
 					if (_wordRegex.IsMatch(trimmedWord))
 					{
-						if (_dictionary.ContainsKey(trimmedWord))
-							_dictionary[trimmedWord]++;
-						else
-							_dictionary.Add(trimmedWord, 1);
+						
+							_hashSet.Add(trimmedWord);
 					}
 				}
 			}
@@ -57,7 +56,7 @@ namespace UnluCoWeekTwoHW.Extensions
 				word = word.ToLower();
 
 				// known()
-				if (_dictionary.ContainsKey(word))
+				if (_hashSet.Contains(word))
 					return word;
 
 				List<String> list = Edits(word);
@@ -65,8 +64,8 @@ namespace UnluCoWeekTwoHW.Extensions
 
 				foreach (string wordVariation in list)
 				{
-					if (_dictionary.ContainsKey(wordVariation) && !candidates.ContainsKey(wordVariation))
-						candidates.Add(wordVariation, _dictionary[wordVariation]);
+					if (_hashSet.Contains(wordVariation) && !candidates.ContainsKey(wordVariation))
+						candidates.Add(wordVariation, 1);
 				}
 
 				if (candidates.Count > 0)
@@ -77,8 +76,8 @@ namespace UnluCoWeekTwoHW.Extensions
 				{
 					foreach (string wordVariation in Edits(item))
 					{
-						if (_dictionary.ContainsKey(wordVariation) && !candidates.ContainsKey(wordVariation))
-							candidates.Add(wordVariation, _dictionary[wordVariation]);
+						if (_hashSet.Contains(wordVariation) && !candidates.ContainsKey(wordVariation))
+							candidates.Add(wordVariation, 1);
 					}
 				}
 
